@@ -13,11 +13,14 @@ module.exports = function (options) {
   var winRef;
   var stateChangeTimer;
   var eventHandlingDelay = 100;
+  // http://electron.atom.io/docs/api/structures/rectangle/
+  var rectProps = ['x', 'y', 'width', 'height'];
+
   var config = Object.assign({
     file: 'window-state.json',
     path: app.getPath('userData'),
     maximize: true,
-    fullScreen: true
+    fullScreen: true,
   }, options);
   var fullStoreFileName = path.join(config.path, config.file);
 
@@ -26,11 +29,7 @@ module.exports = function (options) {
   }
 
   function hasBounds() {
-    return state &&
-      state.x !== undefined &&
-      state.y !== undefined &&
-      state.width !== undefined &&
-      state.height !== undefined;
+    return state && rectProps.every(v => state[v] !== undefined);
   }
 
   function validateState() {
@@ -43,7 +42,7 @@ module.exports = function (options) {
     if (hasBounds() && state.displayBounds) {
       // Check if the display where the window was last open is still available
       var displayBounds = screen.getDisplayMatching(state).bounds;
-      var sameBounds = deepEqual(state.displayBounds, displayBounds, {strict: true});
+      var sameBounds = rectProps.every(v => state.displayBounds[v] === displayBounds[v]);
       if (!sameBounds) {
         if (displayBounds.width < state.displayBounds.width) {
           if (state.x > displayBounds.width) {
@@ -95,7 +94,7 @@ module.exports = function (options) {
     // Save state
     try {
       mkdirp.sync(path.dirname(fullStoreFileName));
-      jsonfile.writeFileSync(fullStoreFileName, state);
+      fs.writeFileSync(fullStoreFileName, JSON.stringify(state));
     } catch (err) {
       // Don't care
     }
@@ -144,7 +143,7 @@ module.exports = function (options) {
 
   // Load previous state
   try {
-    state = jsonfile.readFileSync(fullStoreFileName);
+    state = JSON.parse(fs.readFileSync(fullStoreFileName, 'utf8'));
   } catch (err) {
     // Don't care
   }
@@ -167,6 +166,6 @@ module.exports = function (options) {
     get isFullScreen() { return state.isFullScreen; },
     saveState: saveState,
     unmanage: unmanage,
-    manage: manage
+    manage: manage,
   };
 };

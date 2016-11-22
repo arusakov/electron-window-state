@@ -1,6 +1,6 @@
 {
   "name": "electron-window-state",
-  "version": "4.0.0",
+  "version": "4.0.1000",
   "description": "Simple module that helps to save and restore size and position of Electron windows.",
   "license": "MIT",
   "repository": "mawie81/electron-window-state",
@@ -16,15 +16,14 @@
     "electron"
   ],
   "files": [
-    "index.js"
+    "index.js",
+    "electron-window-state.d.ts"
   ],
   "dependencies": {
-    "deep-equal": "^1.0.1",
-    "jsonfile": "^2.2.3",
-    "mkdirp": "^0.5.1"
+    "mkdirp": "0.5.1"
   },
   "devDependencies": {
-    "ava": "^0.17.0",
+    "ava": "^0.7.0",
     "mockery": "^1.4.0",
     "sinon": "^1.17.2",
     "xo": "^0.17.1"

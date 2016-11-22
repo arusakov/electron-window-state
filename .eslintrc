@@ -8,7 +8,7 @@
         "es6": true
     },
     "ecmaFeatures": {
-      "modules": true,
+      "modules": true
     },
     "rules": {
         "camelcase": 2,
@@ -16,6 +16,7 @@
         "dot-notation": [ 2, { "allowKeywords": true } ],
         "eqeqeq": [ 2, "allow-null" ],
         "strict": [ 2, "global" ],
+        "comma-dangle": ["error", "always-multiline"],
         "guard-for-in": 2,
         "new-cap": 2,
         "no-bitwise": 2,
