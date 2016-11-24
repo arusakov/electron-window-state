@@ -1,29 +1,30 @@
 {
   "name": "electron-window-state",
-  "version": "4.0.1000",
+  "version": "4.0.1001",
   "description": "Simple module that helps to save and restore size and position of Electron windows.",
   "license": "MIT",
   "repository": "mawie81/electron-window-state",
-  "main": "index.js",
+  "main": "index.es5.js",
   "author": "Marcel Wiehle",
   "engines": {
     "node": ">=4.0.0"
   },
   "scripts": {
-    "test": "xo && ava"
+    "test": "xo && ava",
+    "prepublish": "babel index.js --out-file index.es5.js"
   },
   "keywords": [
     "electron"
   ],
   "files": [
-    "index.js",
-    "electron-window-state.d.ts"
+    "index.es5.js"
   ],
   "dependencies": {
     "mkdirp": "0.5.1"
   },
   "devDependencies": {
     "ava": "^0.7.0",
+    "babel-cli": "^6.18.0",
     "mockery": "^1.4.0",
     "sinon": "^1.17.2",
     "xo": "^0.17.1"
