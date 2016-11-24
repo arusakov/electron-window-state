@@ -11,7 +11,7 @@
   },
   "scripts": {
     "test": "xo && ava",
-    "prepublish": "babel index.js --out-file index.es5.js"
+    "prepublish": "babel index.js --out-file index.es5.js --presets=es2015"
   },
   "keywords": [
     "electron"
