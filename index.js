@@ -2,7 +2,7 @@
 
 var path = require('path');
 var electron = require('electron');
-var jsonfile = require('jsonfile');
+var fs = require('fs');
 var mkdirp = require('mkdirp');
 var deepEqual = require('deep-equal');
 
