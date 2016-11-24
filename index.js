@@ -4,7 +4,6 @@ var path = require('path');
 var electron = require('electron');
 var fs = require('fs');
 var mkdirp = require('mkdirp');
-var deepEqual = require('deep-equal');
 
 module.exports = function (options) {
   var app = electron.app;
@@ -20,7 +19,7 @@ module.exports = function (options) {
     file: 'window-state.json',
     path: app.getPath('userData'),
     maximize: true,
-    fullScreen: true,
+    fullScreen: true
   }, options);
   var fullStoreFileName = path.join(config.path, config.file);
 
@@ -166,6 +165,6 @@ module.exports = function (options) {
     get isFullScreen() { return state.isFullScreen; },
     saveState: saveState,
     unmanage: unmanage,
-    manage: manage,
+    manage: manage
   };
 };
